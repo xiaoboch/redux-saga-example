@@ -21,7 +21,7 @@ class App extends Component {
         this.setState({term: event.target.value})
     }
 
-    renderData(films, error, isFetching) {
+    renderData({films, error, isFetching}) {
 
         if(isFetching) {
             return (
@@ -59,7 +59,7 @@ class App extends Component {
                 </span>
                 </form>
                 <div>
-                    {this.renderData(this.props.films, this.props.error, this.props.isFetching)}
+                    {this.renderData(this.props)}
                 </div>
             </div>
         );

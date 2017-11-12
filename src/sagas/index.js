@@ -29,6 +29,12 @@ function* callFetchFilm(action) {
 
 }
 
+function* watchAllActions() {
+    yield* takeEvery('*', function* logger(action){
+        console.log('[LOGGER] Action: ', action);
+    })
+}
+
 //Match FETCH_FILM actions and invoke callFetchFile which
 // will take the action as parameter
 function* watchFetchFilmSaga() {
@@ -38,5 +44,6 @@ function* watchFetchFilmSaga() {
 export default function* rootSaga() {
     yield all([
         fork(watchFetchFilmSaga),
+        fork(watchAllActions)
     ])
 }
