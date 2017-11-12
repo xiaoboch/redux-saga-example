@@ -21,7 +21,13 @@ class App extends Component {
         this.setState({term: event.target.value})
     }
 
-    renderData(films, error) {
+    renderData(films, error, isFetching) {
+
+        if(isFetching) {
+            return (
+                <div>Fetching....</div>
+            )
+        }
 
         if(error) {
             return (
@@ -53,7 +59,7 @@ class App extends Component {
                 </span>
                 </form>
                 <div>
-                    {this.renderData(this.props.films, this .props.error)}
+                    {this.renderData(this.props.films, this.props.error, this.props.isFetching)}
                 </div>
             </div>
         );
@@ -65,10 +71,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    console.log('App component films: ',  state.films)
+    console.log('App component films: ',  state)
     return {
         films: state.fetchedFilms.films,
-        error: state.fetchedFilms.error
+        error: state.fetchedFilms.error,
+        isFetching: state.fetchedFilms.isFetching
     }
 }
 

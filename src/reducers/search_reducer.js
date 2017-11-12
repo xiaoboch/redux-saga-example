@@ -1,4 +1,9 @@
-import { SEARCH_STH, RECEIVE_FILM, FETCH_FILMS_FAIL } from '../actions/index';
+import {
+    SEARCH_STH,
+    RECEIVE_FILM,
+    FETCH_FILMS_FAIL,
+    FETCHING_FILMS } from '../actions/index';
+
 
 // the state here is not application state, it is the
 // state this reducer responsible for
@@ -21,6 +26,10 @@ export default function(state={
                 isFetching: false,
                 films: [],
                 error: action.error,
+            }
+        case FETCHING_FILMS:
+            return {
+                isFetching: true
             }
     }
     return state
