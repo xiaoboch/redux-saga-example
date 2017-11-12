@@ -21,11 +21,23 @@ class App extends Component {
         this.setState({term: event.target.value})
     }
 
-    renderFilm(film, index) {
+    renderData(films, error) {
 
-        return (
-            <div key={index}>{film.director}</div>
-        )
+        if(error) {
+            return (
+                <div>No film data found.</div>
+            )
+        }else {
+            return (
+                films.map(this.renderFilm)
+            )
+        }
+    }
+
+    renderFilm(film, index){
+            return (
+                <div key={index}>{film.director}</div>
+            )
     }
 
     render() {
@@ -41,7 +53,7 @@ class App extends Component {
                 </span>
                 </form>
                 <div>
-                    {this.props.films.map(this.renderFilm)}
+                    {this.renderData(this.props.films, this .props.error)}
                 </div>
             </div>
         );
@@ -54,7 +66,10 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     console.log('App component films: ',  state.films)
-    return { films: state.films  }
+    return {
+        films: state.fetchedFilms.films,
+        error: state.fetchedFilms.error
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
