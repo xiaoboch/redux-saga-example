@@ -3,7 +3,7 @@ import {fork, call, all, put} from 'redux-saga/effects';
 import * as actions from '../actions/index'
 import axios from 'axios';
 
-const data_url = 'https://data.sfgov.org/resource/wwmu-gmzc.json'
+const data_url = 'https://data.sfgov.org/resource/wwmu-gmzc.json';
 
 function searchApi(query) {
     return axios.get(data_url).then(response =>({ response})).catch(error =>(error) );
@@ -17,8 +17,8 @@ function* callFetchFilm(action) {
     let query = action.query
     let {response, error} = yield call(searchApi, query);
 
-    if (response && response.status == 200) {
-        console.log('response data is ', response.data)
+    if (response && response.status === 200) {
+        console.log('response data is ', response.data);
         yield put(actions.receiveFilms(response.data));
     } else {
         if(!error){

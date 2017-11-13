@@ -2,14 +2,14 @@ import axios from 'axios'
 
 export const FETCH_FILM = 'FETCH_FILM';
 export const RECEIVE_FILM = 'RECEIVE_FILM';
-export const FETCH_FILMS_FAIL = 'FETCH_FILMS_FAIL'
-export const FETCHING_FILMS = 'FETCHING_FILMS'
+export const FETCH_FILMS_FAIL = 'FETCH_FILMS_FAIL';
+export const FETCHING_FILMS = 'FETCHING_FILMS';
 
 function action(type, payload={}){
     return {type, ...payload}
 }
 
-export function searchSth(query){
+export function searchFilms(query){
 
     return action(FETCH_FILM,query)
 }
