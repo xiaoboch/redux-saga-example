@@ -10,11 +10,11 @@ function searchApi(query) {
 }
 
 function* callFetchFilm(action) {
-    console.log('Saga middleware process actions:  ', action)
+    console.log('Saga middleware process actions:  ', action);
 
     yield put(actions.fetchingFilms());
-    yield delay(1000)
-    let query = action.query
+    yield delay(1000);
+    let query = action.query;
     let {response, error} = yield call(searchApi, query);
 
     if (response && response.status === 200) {

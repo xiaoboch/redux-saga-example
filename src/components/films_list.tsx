@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 class FilmList extends Component {
 
-    renderFilm(film, index) {
+    static renderFilm(film, index) {
         return (
             <tr key={index}>
                 <td>{film.title}</td>
