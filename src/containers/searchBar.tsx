@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators} from 'redux';
 import { searchFilms} from "../actions/index";
 
-class SearchBar extends Component {
+class SearchBar extends React.Component {
 
     constructor(props) {
         super(props);

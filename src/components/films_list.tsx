@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
+import { Film, FilmState } from '../reducers/filmState'
 
-class FilmList extends Component {
+class FilmList extends React.Component<FilmState> {
 
-    static renderFilm(film, index) {
+    renderFilm(film: Film, index: number) {
         return (
             <tr key={index}>
                 <td>{film.title}</td>
@@ -15,7 +16,7 @@ class FilmList extends Component {
 
     render() {
 
-        const {films, isFetching, error} = this.props;
+        const {films, isFetching , error} = this.props;
 
         if (isFetching) {
             return (
@@ -40,7 +41,7 @@ class FilmList extends Component {
                     </thead>
 
                     <tbody>
-                    {  films.map(this.renderFilm)}
+                    { films.map(this.renderFilm)}
                     </tbody>
 
                 </table>
@@ -50,12 +51,11 @@ class FilmList extends Component {
     }
 };
 
-function mapStateToProps(state) {
-    console.log('App component films: ', state.fetchedFilms);
+function mapStateToProps(state: FilmState) {
     return {
-        films: state.fetchedFilms.films,
-        error: state.fetchedFilms.error,
-        isFetching: state.fetchedFilms.isFetching
+        films: state.films,
+        error: state.error,
+        isFetching: state.isFetching
     }
 }
 

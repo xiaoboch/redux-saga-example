@@ -2,7 +2,7 @@ import ActionTypes from './action_types';
 import { Film } from '../reducers/filmState'
 
 
-export interface RequestFilmAction {
+export interface RequestFilmAction  {
 
     query: string;
 }
@@ -13,19 +13,23 @@ export interface FilmAction extends RequestFilmAction {
     films: Film[];
 }
 
-export const searchFilms: (query: string) => RequestFilmAction = (
+function action(type:ActionTypes, payload={}){
+    return {type, ...payload}
+}
 
-    (query: string) => ({type: ActionTypes.FETCH_FILM, query})
-);
+export function searchFilms(query: string){
 
-export const receiveFilms: (films: Film[]) => FilmAction = (
-    (films: Film[]) => ({type: ActionTypes.RECEIVE_FILM, films})
-);
+    return action(ActionTypes.FETCH_FILM ,query)
+}
 
-export const fetchFilmsFail: (error: string) => RequestFilmAction = (
-    (error: string) => ({type: ActionTypes.FETCH_FILMS_FAIL, films: [], error: error})
-);
+export function receiveFilms(films:Film[]) {
+    return action(ActionTypes.RECEIVE_FILM, {films});
+}
 
-export const fetchingFilms: () => Action = (
-    () => ({type: ActionTypes.FETCHING_FILMS})
-);
+export function fetchFilmsFail(error:string) {
+    return action(ActionTypes.FETCH_FILMS_FAIL,{films: [], error: error})
+}
+
+export function fetchingFilms(){
+    return action(ActionTypes.FETCHING_FILMS);
+}

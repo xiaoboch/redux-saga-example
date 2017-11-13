@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const data_url = 'https://data.sfgov.org/resource/wwmu-gmzc.json';
 
-function searchApi(query) {
+function searchApi(query:string) {
     return axios.get(data_url).then(response =>({ response})).catch(error =>(error) );
 }
 
