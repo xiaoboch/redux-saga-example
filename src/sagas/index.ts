@@ -42,7 +42,7 @@ function* watchFetchFilmSaga() {
     yield takeEvery(FETCH_FILM, callFetchFilm);
 }
 
-export default function* rootSaga() {
+export default function* rootSaga() : IterableIterator<any>{
     yield all([
         fork(watchFetchFilmSaga),
     ])

@@ -1,10 +1,10 @@
 import * as constants from '../constants/index';
-import { Film, FilmState } from '../types';
+import { FilmState } from '../types';
 import { FilmAction } from '../actions/index'
 
 // the state here is not application state, it is the
 // state this reducer responsible for
-export default function (state: FilmState, action: FilmAction) {
+export default function filmReducer(state: FilmState, action: FilmAction) :FilmState{
 
     switch (action.type) {
         case constants.RECEIVE_FILM:

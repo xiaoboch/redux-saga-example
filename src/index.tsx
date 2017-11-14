@@ -4,23 +4,26 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from './sagas/index'
+import rootSaga from './sagas/index';
 
 import App from './components/app';
-import reducers from './reducers/index';
+import filmReducer from './reducers/search_reducer';
 import { FilmState } from './types';
 
 // const sagaMiddleware = createSagaMiddleware(rootSaga)
 // const createStoreWithMiddleware = applyMiddleware(sagaMiddleware)(createStore);
 //
+const preloadState = new FilmState([], false, '');
 
-const sagaMiddleware = createSagaMiddleware(rootSaga);
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore<FilmState>(
-    reducers,
+    filmReducer,
+    preloadState,
     applyMiddleware(sagaMiddleware)
 );
 
 sagaMiddleware.run(rootSaga);
+
 
 ReactDOM.render(
   <Provider store={store}>

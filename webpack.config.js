@@ -1,3 +1,5 @@
+var webpack = require("webpack");
+
 module.exports = {
     entry: [
         './src/index.tsx'
@@ -16,10 +18,10 @@ module.exports = {
         ],
 
     },
-    externals: {
-        "react": "React",
-        'react-dom': "ReactDOM"
-    },
+    // externals: {
+    //     "react": "React",
+    //     'react-dom': "ReactDOM"
+    // },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
     },
@@ -29,5 +31,10 @@ module.exports = {
         stats: {chunks: false},
         inline: true,
         watchContentBase: true
-    }
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            "React": "react",
+        }),
+    ],
 };
