@@ -1,35 +1,58 @@
-import ActionTypes from './action_types';
-import { Film } from '../reducers/filmState'
+import * as constants from '../constants';
+import {Film} from '../types';
 
 
-export interface RequestFilmAction  {
-
-    query: string;
+export interface RequestFilmAction {
+  type: constants.FETCHING_FILMS
+  query: string;
 }
 
-export interface FilmAction extends RequestFilmAction {
+export interface FetchFilmAction {
 
-    type: ActionTypes;
-    films: Film[];
+  type: constants.FETCH_FILM;
+  films: Film[];
 }
 
-function action(type:ActionTypes, payload={}){
-    return {type, ...payload}
+export interface ReceiveFilmAction {
+  type: constants.RECEIVE_FILM;
+  films: Film[];
 }
 
-export function searchFilms(query: string){
-
-    return action(ActionTypes.FETCH_FILM ,query)
+export interface FetchFilmActionFail {
+  type: constants.FETCH_FILMS_FAIL;
+  error: string;
 }
 
-export function receiveFilms(films:Film[]) {
-    return action(ActionTypes.RECEIVE_FILM, {films});
+export type FilmAction = RequestFilmAction | FetchFilmAction | ReceiveFilmAction | FetchFilmActionFail;
+
+
+export function searchFilms(query: string) {
+
+  return {
+    type: constants.FETCH_FILM,
+    query: query,
+  }
 }
 
-export function fetchFilmsFail(error:string) {
-    return action(ActionTypes.FETCH_FILMS_FAIL,{films: [], error: error})
+export function receiveFilms(films: Film[]) {
+
+  return {
+    type: constants.RECEIVE_FILM,
+    films: films
+  }
 }
 
-export function fetchingFilms(){
-    return action(ActionTypes.FETCHING_FILMS);
+export function fetchFilmsFail(error: string) {
+
+  return {
+    type: constants.FETCH_FILMS_FAIL,
+    error: error
+  }
+}
+
+export function fetchingFilms() {
+
+  return {
+    type: constants.FETCHING_FILMS
+  }
 }

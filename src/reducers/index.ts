@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import  SearchFilmReducer  from './search_reducer';
 
 const rootReducer = combineReducers({
-  fetchedFilms: SearchFilmReducer
+  films: SearchFilmReducer
 });
 
 export default rootReducer;

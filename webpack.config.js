@@ -11,23 +11,17 @@ module.exports = {
 
     module: {
         rules: [
-            {test: '/\.tsx?$/', loader: 'awesome-typescript-loader'},
+            {test: /\.ts|\.tsx$/, loader: 'awesome-typescript-loader'},
             {enforce: "pre", test: '/\.js$/', loader: 'source-map-loader'}
         ],
-        loaders: [{
-            exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-                presets: ['react', 'es2015', 'stage-1']
-            }
-        }]
+
     },
     externals: {
         "react": "React",
         'react-dom': "ReactDOM"
     },
     resolve: {
-        extensions: ['', '.js', '.jsx', 'ts', 'tsx', 'json']
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
     },
     devServer: {
         historyApiFallback: true,

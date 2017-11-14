@@ -1,6 +1,16 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import { Film, FilmState } from '../reducers/filmState'
+import { Film, FilmState } from '../types';
+
+interface FilmListProps {
+
+}
+
+interface FilmListState {
+  films: Film[];
+  isFetching: boolean;
+  error: string;
+}
 
 class FilmList extends React.Component<FilmState> {
 
