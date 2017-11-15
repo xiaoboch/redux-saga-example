@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { bindActionCreators} from 'redux';
+import { bindActionCreators, Dispatch} from 'redux';
 import { searchFilms} from "../actions/index";
+
 
 class SearchBar extends Component {
 
@@ -38,9 +39,25 @@ class SearchBar extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch){
+/**
+ *
+ * @param dispatch
+ * @returns {{searchFilms: searchFilms}|ActionCreator<any>|ActionCreatorsMapObject}
+ *
+ * it equals to next line
+ * return {
+        searchFilms: () => dispatch(searchFilms());
+    }
+ */
+function mapDispatchToProps(dispatch: Dispatch){
     return bindActionCreators({searchFilms},  dispatch);
 }
 
 
 export default connect(null, mapDispatchToProps)(SearchBar);
+/**
+ * this line equals to next two lines
+ * export default connect(null, {searchFilms:searchFilms()})(SearchBar);
+ * export default connect(null, {searchFilms})(SearchBar);
+ *
+ */
