@@ -7,16 +7,17 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/index';
 
 import App from './components/app';
-import filmReducer from './reducers/search_reducer';
-import { FilmState } from './types';
+import filmReducer from './reducers/index';
+import {AppState, FilmState} from './types';
 
 // const sagaMiddleware = createSagaMiddleware(rootSaga)
 // const createStoreWithMiddleware = applyMiddleware(sagaMiddleware)(createStore);
 //
-const preloadState = new FilmState([], false, '');
+const filmState  = new FilmState([], false, '');
+const preloadState = {filmState: filmState};
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore<FilmState>(
+const store = createStore<AppState>(
     filmReducer,
     preloadState,
     applyMiddleware(sagaMiddleware)

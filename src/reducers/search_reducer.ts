@@ -4,7 +4,7 @@ import { FilmAction } from '../actions/index'
 
 // the state here is not application state, it is the
 // state this reducer responsible for
-export default function filmReducer(state: FilmState, action: FilmAction) :FilmState{
+export default function filmReducer(state: FilmState ={isFetching: false}, action: FilmAction) :FilmState{
 
     switch (action.type) {
         case constants.RECEIVE_FILM:

@@ -1,13 +1,21 @@
 export class FilmState {
 
-    films: Film[];
+    films?: Film[];
     isFetching: boolean;
-    error: string;
+    error?: string;
 
     constructor(films: Film[], isFetching: boolean, error: string) {
       this.films = films;
       this.isFetching = isFetching;
       this.error = error;
+    }
+}
+
+export class AppState {
+    public filmState: FilmState;
+
+    constructor(filmState: FilmState){
+        this.filmState = filmState;
     }
 }
 

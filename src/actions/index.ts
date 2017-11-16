@@ -25,6 +25,7 @@ export interface FetchFilmActionFail {
 
 export type FilmAction = RequestFilmAction | FetchFilmAction | ReceiveFilmAction | FetchFilmActionFail;
 
+// export const searchFilms = (query: string) =>  createAction(constants.FETCH_FILM)(query);
 
 export function searchFilms(query: string) {
 

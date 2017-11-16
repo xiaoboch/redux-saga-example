@@ -1,32 +1,15 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import { Film, FilmState } from '../types';
+import { Film, AppState } from '../types';
+
 
 interface FilmListProps {
-
+    films: Film[];
+    isFetching: boolean;
+    error: string;
 }
 
-interface FilmListState {
-  films: Film[];
-  isFetching: boolean;
-  error: string;
-}
-
-class FilmList extends React.Component<FilmState> {
-
-    renderFilm(film: Film, index: number) {
-        return (
-            <tr key={index}>
-                <td>{film.title}</td>
-                <td>{film.locations}</td>
-                <td>{film.writer}</td>
-            </tr>
-        )
-    }
-
-    render() {
-
-        const {films, isFetching , error} = this.props;
+function FilmList({films, isFetching , error}: FilmListProps){
 
         if (isFetching) {
             return (
@@ -51,21 +34,35 @@ class FilmList extends React.Component<FilmState> {
                     </thead>
 
                     <tbody>
-                    { films.map(this.renderFilm)}
+                    { films.map(renderFilm)}
                     </tbody>
 
                 </table>
             )
+        }else {
+
+            return ( <div>No data found yet.</div>)
         }
-        return ( <div>No data found yet.</div>)
-    }
+
 };
 
-function mapStateToProps(state: FilmState) {
+function renderFilm(film: Film, index: number) {
+    return (
+        <tr key={index}>
+            <td>{film.title}</td>
+            <td>{film.locations}</td>
+            <td>{film.writer}</td>
+        </tr>
+    )
+}
+
+function mapStateToProps(state: AppState): FilmListProps {
+    console.log('Film list component: ', state);
+    const filmState = state.filmState;
     return {
-        films: state.films,
-        error: state.error,
-        isFetching: state.isFetching
+        films: filmState.films,
+        error: filmState.error,
+        isFetching: filmState.isFetching
     }
 }
 

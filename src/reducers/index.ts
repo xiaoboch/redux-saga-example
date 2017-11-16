@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import {combineReducers, Reducer} from 'redux';
 import  SearchFilmReducer  from './search_reducer';
-import { FilmState} from "../types/index";
+import {AppState} from "../types/index";
 
-const rootReducer = combineReducers<FilmState>({
-  films: SearchFilmReducer
+const rootReducer: Reducer<AppState> = combineReducers<AppState>({
+  filmState: SearchFilmReducer
 });
 
 export default rootReducer;
